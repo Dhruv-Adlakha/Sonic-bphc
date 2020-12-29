@@ -12,13 +12,38 @@ router.get('/users', async (req, res) => {
   }
 });
 
+//Route for getting a user
+router.get('/users/:id', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    res.send(user);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+  }
+});
+
 //Route for creating a user
 router.post('/users', async (req, res) => {
   const newUser = new User(req.body);
   try {
     await newUser.save();
-    console.log(newUser);
     res.send(newUser);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+//Route for updating a user
+router.patch('/users/:id', async (req, res) => {
+  const updates = Object.keys(req.body);
+  try {
+    const user = await User.findById(req.params.id);
+    updates.forEach((update) => {
+      user[update] = req.body[update];
+    });
+    await user.save();
+    res.send(user);
   } catch (error) {
     res.status(500).send(error);
   }
@@ -30,7 +55,6 @@ router.delete('/users/:id', async (req, res) => {
     const user = await User.findOneAndDelete({ _id: req.params.id });
     res.send(user);
   } catch (error) {
-    console.log(error);
     res.status(500).send(error);
   }
 });
