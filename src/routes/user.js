@@ -5,10 +5,10 @@ const auth = require('../middleware/auth');
 const router = express.Router();
 
 //Route for getting all the users
-router.get('/users', auth, async (req, res) => {
+router.get('/users', async (req, res) => {
   try {
     const users = await User.find({});
-    console.log(users);
+    //console.log(users);
     res.send(users);
   } catch (error) {
     res.status(500).send(error);
@@ -21,7 +21,7 @@ router.get('/users/:id', auth, async (req, res) => {
     const user = await User.findById(req.params.id);
     res.send(user);
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     res.status(500).send(error);
   }
 });
@@ -44,19 +44,39 @@ router.post('/users', async (req, res) => {
   }
 });
 
+//Route for logging in a user
+router.post('/users/login', async (req, res) => {
+  try {
+    const passwordEntered = req.body.password;
+    const hashedPasswordEntered = await bcrypt.hash(
+      JSON.stringify(passwordEntered),
+      8
+    );
+    const user = await User.findOne({ name: req.body.name });
+
+    await bcrypt.compare(passwordEntered, user.password, (err, res) => {
+      if (err) {
+        return res.status(404).send('Invalid credentials');
+      }
+    });
+    const token = await user.generateAuthToken();
+    res.send({ user, token });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send(error);
+  }
+});
+
 //Route for logging out a user
 router.post('/users/logout', auth, async (req, res) => {
   try {
-    // console.log(req.header);
     const token = req.header('Authorization').replace('Bearer ', '');
-    //console.log(token);
     req.user.tokens = req.user.tokens.filter((usertoken) => {
       return usertoken.token !== token;
     });
     await req.user.save();
     res.send();
   } catch (error) {
-    //console.log(error);
     res.status(500).send(error);
   }
 });

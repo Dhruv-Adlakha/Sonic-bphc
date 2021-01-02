@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     required: true,
     type: String,
     trim: true,
-    //unique: true,
+    unique: true,
   },
   status: {
     required: true,
