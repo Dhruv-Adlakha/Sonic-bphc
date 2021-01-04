@@ -7,7 +7,7 @@
 
 body {
   font-family: 'Josefin Sans', sans-serif;
-  overflow: hidden;
+  /* overflow: hidden; */
   font-weight: 200;
 }
 
@@ -48,6 +48,41 @@ body {
 .form-input:focus {
   outline: none;
   border-color: #2f3542;
+}
+
+#profile {
+  margin-top: 10vh;
+  float: left;
+}
+
+#profile img {
+  border-radius: 30px;
+  margin-bottom: 20px;
+  border: 3px solid #2f3542;
+}
+
+.profile-card {
+  text-align: center;
+  width: 550px;
+  margin: auto;
+  background: #2f3542;
+  font-size: 25px;
+  padding: 30px;
+  border-radius: 20px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+/* the info classes are related to profile card contents */
+.info .info-headings {
+  float: left;
+  color: #7bed9f;
+  margin-bottom: 15px;
+}
+
+.info .info-contents {
+  float: right;
+  color: #dfe4ea;
 }
 
 /* navbar */
@@ -235,20 +270,11 @@ navbar ul li a:hover {
 }
 
 /* my-profile */
+
 #my-profile {
   text-align: center;
   margin: auto;
   margin-top: 10vh;
-}
-
-#my-profile .full-info {
-  width: 550px;
-  margin: auto;
-  background: #2f3542;
-  font-size: 25px;
-  padding: 30px;
-  border-radius: 20px;
-  margin-top: 20px;
 }
 
 #my-profile img {
@@ -259,13 +285,59 @@ navbar ul li a:hover {
   border: 3px solid #2f3542;
 }
 
-#my-profile .info .info-headings {
-  float: left;
-  color: #7bed9f;
-  margin-bottom: 15px;
+/* about page */
+
+.about-section {
+  background: url('./img/bits.jpg') no-repeat center/cover;
+  height: 100vh;
+  padding-top: 15vh;
 }
 
-#my-profile .info .info-contents {
-  float: right;
+#about {
+  width: 50vw;
+  text-align: justify;
+  margin: auto;
+  /* margin-top: 15%; */
+  background: #2f3542;
   color: #dfe4ea;
+  padding: 30px;
+}
+
+#about h2,
+#about span {
+  color: #7bed9f;
+}
+
+#about p {
+  margin: 20px 0;
+  line-height: 1.5rem;
+}
+
+/* Profiles */
+.profiles-container {
+  margin: auto;
+  max-width: 1200px;
+}
+
+#profiles {
+  display: inline-block;
+}
+
+#profiles img {
+  height: 100px;
+  width: 100px;
+}
+
+#profiles .profile-card {
+  font-size: 20px;
+  width: 380px;
+}
+
+#profiles .my-profile {
+  margin: 0 auto;
+}
+
+#profiles #profile h1 {
+  color: #dfe4ea;
+  margin-bottom: 20px;
 }
