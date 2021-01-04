@@ -18,6 +18,10 @@ body {
   /* padding: 0 20px; */
 }
 
+.clr {
+  clear: both;
+}
+
 /* utils */
 .btn {
   padding: 25px;
@@ -33,13 +37,25 @@ body {
   background: rgb(20, 6, 6);
 }
 
+.form-input {
+  padding: 10px;
+  border-radius: 5px;
+  float: right;
+  margin-right: 20px;
+  font-size: 15px;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #2f3542;
+}
+
 /* navbar */
 navbar {
   background: #2f3542;
   display: block;
   overflow: auto;
   color: #dfe4ea;
-  /* padding: 20px; */
 }
 
 navbar h1 {
@@ -91,7 +107,8 @@ navbar ul li a:hover {
   text-align: center;
   font-size: 50px;
   padding-top: 30vh;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
+  font-style: italic;
 }
 
 #landing .landing-buttons {
@@ -101,4 +118,118 @@ navbar ul li a:hover {
 
 #landing .landing-buttons .btn {
   margin-left: 20px;
+}
+
+/* Sign up */
+#signup {
+  text-align: center;
+  background: url('./img/bits.jpg') no-repeat center/cover;
+  height: 100vh;
+}
+
+#signup .back {
+  padding: 80px;
+}
+
+#signup h1 {
+  margin-bottom: 20px;
+  font-size: 40px;
+  color: #2f3542;
+}
+
+#signup form {
+  padding: 30px 0;
+  background: #2f3542;
+  width: 450px;
+  height: 410px;
+  margin: auto;
+  border-radius: 15px;
+}
+
+#signup form label {
+  float: left;
+  font-size: 25px;
+  margin-left: 20px;
+  color: #7bed9f;
+}
+
+#signup .signup-element {
+  margin: 10px 0;
+  text-align: center;
+}
+
+#signup .submit {
+  margin-top: 20px;
+}
+
+#signup .submit button {
+  padding: 20px;
+}
+
+#signup p {
+  color: #dfe4ea;
+  margin-top: 20px;
+}
+
+#signup p a {
+  text-decoration: none;
+  color: #7bed9f;
+  text-decoration: underline;
+}
+
+/* Login */
+#login {
+  text-align: center;
+  background: url('./img/bits.jpg') no-repeat center/cover;
+  height: 100vh;
+}
+
+#login .back {
+  padding: 80px;
+}
+
+#login h1 {
+  margin-bottom: 20px;
+  font-size: 40px;
+  color: #2f3542;
+}
+
+#login form {
+  padding: 40px 0;
+  background: #2f3542;
+  width: 450px;
+  height: 280px;
+  margin: auto;
+  border-radius: 15px;
+}
+
+#login form label {
+  float: left;
+  font-size: 25px;
+  margin-left: 20px;
+  color: #7bed9f;
+}
+
+#login .login-element {
+  margin: 10px 0;
+  text-align: center;
+}
+
+#login .submit {
+  margin-top: 20px;
+}
+
+#login .submit button {
+  padding: 20px;
+}
+
+#login p {
+  color: #dfe4ea;
+  margin-top: 20px;
+}
+
+#login p a {
+  text-decoration: none;
+  color: #7bed9f;
+  text-decoration: underline;
 }
