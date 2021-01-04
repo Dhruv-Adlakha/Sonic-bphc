@@ -233,3 +233,39 @@ navbar ul li a:hover {
   color: #7bed9f;
   text-decoration: underline;
 }
+
+/* my-profile */
+#my-profile {
+  text-align: center;
+  margin: auto;
+  margin-top: 10vh;
+}
+
+#my-profile .full-info {
+  width: 550px;
+  margin: auto;
+  background: #2f3542;
+  font-size: 25px;
+  padding: 30px;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+#my-profile img {
+  border-radius: 30px;
+  height: 300px;
+  width: 300px;
+  margin-bottom: 20px;
+  border: 3px solid #2f3542;
+}
+
+#my-profile .info .info-headings {
+  float: left;
+  color: #7bed9f;
+  margin-bottom: 15px;
+}
+
+#my-profile .info .info-contents {
+  float: right;
+  color: #dfe4ea;
+}
