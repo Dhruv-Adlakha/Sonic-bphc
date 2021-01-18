@@ -1,15 +1,27 @@
 import React from 'react';
 import Profile from './Profile';
+import { connect } from 'react-redux';
+import { getUsers } from '../Redux/Actions/Actions';
 
-const Signup = () => (
-  <section class='profiles-container'>
-    <Profile />
-    <Profile />
-    <Profile />
-    <Profile />
-    <Profile />
-    <Profile />
-  </section>
-);
+class Profiles extends React.Component {
+  componentDidMount(props) {
+    this.props.dispatch(getUsers());
+  }
+  render() {
+    return (
+      <section class='profiles-container'>
+        {this.props.users.map((user) => {
+          return <Profile user={user} />;
+        })}
+      </section>
+    );
+  }
+}
 
-export default Signup;
+const mapStateToProps = (state) => {
+  return {
+    users: state.users,
+  };
+};
+
+export default connect(mapStateToProps)(Profiles);

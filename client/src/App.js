@@ -1,15 +1,17 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import Counter from './Components/Counter';
-import Profiles from './Components/Profiles';
-import { INCREMENT, GET_USERS } from './Redux/Actions/ActionConstants';
+import {
+  INCREMENT,
+  GET_USERS,
+  ADD_USER,
+} from './Redux/Actions/ActionConstants';
 import AppRouter from './Routers/AppRouter';
 
 const initState = {
-  count: 11,
+  posts: [],
   users: [],
-  error: '',
+  isAuthenticated: false,
 };
 
 const reducer = (state = initState, action) => {
@@ -22,6 +24,11 @@ const reducer = (state = initState, action) => {
     case GET_USERS:
       return {
         users: action.payload,
+      };
+    case ADD_USER:
+      return {
+        users: state.users.concat(action.payload),
+        isAuthenticated: true,
       };
     default:
       return {
