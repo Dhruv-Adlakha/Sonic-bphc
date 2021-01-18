@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import Counter from './Components/Counter';
 import Profiles from './Components/Profiles';
 import { INCREMENT, GET_USERS } from './Redux/Actions/ActionConstants';
+import AppRouter from './Routers/AppRouter';
 
 const initState = {
   count: 11,
@@ -33,7 +34,7 @@ const store = createStore(reducer, applyMiddleware(thunk));
 const App = () => {
   return (
     <Provider store={store}>
-      <Profiles />
+      <AppRouter />
     </Provider>
   );
 };
