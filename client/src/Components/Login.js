@@ -1,35 +1,84 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { LoginUser } from '../Redux/Actions/Actions';
 
-const Login = () => (
-  <section id='login'>
-    <div className='back'>
-      <h1>Login</h1>
-      <form>
-        <div className='login-element'>
-          <label for='name'>Name</label>
-          <input className='form-input' type='text' />
-        </div>
-        <div className='clr'></div>
-        <div className='login-element'>
-          <label for='email'>Email</label>
-          <input className='form-input' type='email' />
-        </div>
-        <div className='clr'></div>
-        <div className='login-element'>
-          <label for='password'>Password</label>
-          <input className='form-input' type='password' />
-        </div>
-        <div className='clr'></div>
-      </form>
-      <div className='submit'>
-        <button className='btn'>Submit</button>
-      </div>
-      <p>
-        Don't Have an account? <NavLink to='/signup'>Sign up</NavLink>
-      </p>
-    </div>
-  </section>
-);
+class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    const state = {
+      name: '',
+      email: '',
+      password: '',
+    };
+    this.onChangeHandler = this.onChangeHandler.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+  onChangeHandler(e) {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  }
+  onSubmit(e) {
+    e.preventDefault();
+    console.log('submitted form');
 
-export default Login;
+    this.props.dispatch(LoginUser(this.state));
+  }
+  render() {
+    return (
+      <section id='login'>
+        <div className='back'>
+          <h1>Login</h1>
+          <form onSubmit={this.onSubmit}>
+            <div className='login-element'>
+              <label for='name'>Name</label>
+              <input
+                className='form-input'
+                type='text'
+                name='name'
+                onChange={this.onChangeHandler}
+              />
+            </div>
+            <div className='clr'></div>
+            <div className='login-element'>
+              <label for='email'>Email</label>
+              <input
+                className='form-input'
+                type='email'
+                name='email'
+                onChange={this.onChangeHandler}
+              />
+            </div>
+            <div className='clr'></div>
+            <div className='login-element'>
+              <label for='password'>Password</label>
+              <input
+                className='form-input'
+                type='password'
+                name='password'
+                onChange={this.onChangeHandler}
+              />
+            </div>
+            <div className='clr'></div>
+            <div className='submit'>
+              <button className='btn' type='submit'>
+                Submit
+              </button>
+            </div>
+          </form>
+
+          <p>
+            Don't Have an account? <NavLink to='/signup'>Sign up</NavLink>
+          </p>
+        </div>
+      </section>
+    );
+  }
+}
+
+const mapStateToProps = (state) => {
+  return state;
+};
+
+export default connect(mapStateToProps)(Login);
