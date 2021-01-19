@@ -332,6 +332,7 @@ body {
 #profiles .profile-card {
   font-size: 20px;
   width: 380px;
+  margin-left: 10px;
 }
 
 #profiles .my-profile {
@@ -364,4 +365,64 @@ body {
 .dashboard-card i {
   text-align: center;
   margin: 30px 0;
+}
+
+/* Posts */
+.posts-section {
+  max-width: 60vw;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.posts-section h1 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.posts {
+  display: flex;
+  flex-direction: column-reverse;
+  max-width: 60vw;
+}
+
+.post {
+  margin-bottom: 30px;
+  background: #2f3542;
+  padding: 30px;
+  border-radius: 20px;
+}
+
+.post .post-titlebar h3 {
+  color: #7bed9f;
+  margin-bottom: 2px;
+}
+
+.post .post-titlebar h5 {
+  color: #21bd52;
+  margin-bottom: 15px;
+}
+
+.post p {
+  color: #dfe4ea;
+}
+
+.post .post-feedback {
+  display: flex;
+  margin-top: 15px;
+  justify-content: flex-end;
+}
+
+.post .post-feedback i {
+  color: #21bd52;
+}
+
+.post .post-feedback .red-color {
+  color: red;
+}
+
+.post .post-feedback button {
+  background: #2f3542;
+  padding: 1px;
+  border: none;
+  margin-left: 15px;
 }

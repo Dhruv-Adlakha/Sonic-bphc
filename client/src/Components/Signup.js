@@ -32,7 +32,7 @@ class Signup extends React.Component {
 
   render() {
     return (
-      <section id='signup'>
+      <section id='signup' className='signup-back'>
         <div className='back'>
           <h1>Sign up</h1>
           <form onSubmit={this.onSubmitHandler}>

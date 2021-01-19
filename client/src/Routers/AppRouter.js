@@ -8,6 +8,7 @@ import MyProfile from '../Components/MyProfile';
 import Profiles from '../Components/Profiles';
 import UpdateProfile from '../Components/UpdateProfile';
 import Dashboard from '../Components/Dashboard';
+import Posts from '../Components/Posts';
 
 const AppRouter = () => {
   return (
@@ -22,6 +23,7 @@ const AppRouter = () => {
         <Route path='/profiles' component={Profiles} />
         <Route path='/updateProfile' component={UpdateProfile} />
         <Route path='/dashboard' component={Dashboard} />
+        <Route path='/posts' component={Posts} />
       </Switch>
     </BrowserRouter>
   );
