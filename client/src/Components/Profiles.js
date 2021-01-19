@@ -4,15 +4,16 @@ import { connect } from 'react-redux';
 import { getUsers } from '../Redux/Actions/Actions';
 
 class Profiles extends React.Component {
-  componentDidMount(props) {
-    this.props.dispatch(getUsers());
+  async componentDidMount(props) {
+    await this.props.dispatch(getUsers());
   }
   render() {
     return (
-      <section class='profiles-container'>
-        {this.props.users.map((user) => {
-          return <Profile user={user} />;
-        })}
+      <section className='profiles-container'>
+        {this.props.users &&
+          this.props.users.map((user, index) => {
+            return <Profile user={user} key={index} />;
+          })}
       </section>
     );
   }

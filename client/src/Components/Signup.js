@@ -1,13 +1,12 @@
-import React, { setState } from 'react';
-import { NavLink, Redirect, Link } from 'react-router-dom';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { addUser } from '../Redux/Actions/Actions';
 import { connect } from 'react-redux';
-import '../Routers/AppRouter';
 
 class Signup extends React.Component {
   constructor(props) {
     super(props);
-    const state = {
+    this.state = {
       name: '',
       email: '',
       password: '',

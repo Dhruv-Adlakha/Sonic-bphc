@@ -1,7 +1,7 @@
 import React from 'react';
 
 const UpdateProfile = () => (
-  <section id='signup'>
+  <section id='signup' className='backremove'>
     <div className='back'>
       <h1>Update profile</h1>
       <form>

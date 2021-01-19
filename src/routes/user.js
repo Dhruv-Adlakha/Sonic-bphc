@@ -47,6 +47,7 @@ router.post('/users', async (req, res) => {
 //Route for logging in a user
 router.post('/users/login', async (req, res) => {
   try {
+    console.log(req.body);
     const passwordEntered = req.body.password;
     const hashedPasswordEntered = await bcrypt.hash(
       JSON.stringify(passwordEntered),

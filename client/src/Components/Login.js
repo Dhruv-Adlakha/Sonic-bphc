@@ -1,12 +1,12 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { LoginUser } from '../Redux/Actions/Actions';
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    const state = {
+    this.state = {
       name: '',
       email: '',
       password: '',
@@ -21,8 +21,6 @@ class Login extends React.Component {
   }
   onSubmit(e) {
     e.preventDefault();
-    console.log('submitted form');
-
     this.props.dispatch(LoginUser(this.state));
   }
   render() {
@@ -71,6 +69,10 @@ class Login extends React.Component {
           <p>
             Don't Have an account? <NavLink to='/signup'>Sign up</NavLink>
           </p>
+          {console.log(localStorage.getItem('token'))}
+          {localStorage.getItem('token') !== null && (
+            <Redirect to='/dashboard' />
+          )}
         </div>
       </section>
     );

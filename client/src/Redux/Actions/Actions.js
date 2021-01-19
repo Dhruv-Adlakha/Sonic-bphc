@@ -32,10 +32,21 @@ export const addUser = (user) => {
 export const LoginUser = (user) => {
   return async (dispatch) => {
     try {
-      const userg = await axios.post('/users/login', user);
+      console.log(user);
+      const res = await axios({
+        method: 'post',
+        url: '/users/login',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application.json',
+        },
+        data: user,
+      });
+
+      localStorage.setItem('token', res.data.token);
       dispatch({
         type: LOGIN_USER,
-        payload: userg.data,
+        payload: res.data.user,
       });
     } catch (error) {
       console.log(error);

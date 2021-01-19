@@ -7,6 +7,7 @@ import Login from '../Components/Login';
 import MyProfile from '../Components/MyProfile';
 import Profiles from '../Components/Profiles';
 import UpdateProfile from '../Components/UpdateProfile';
+import Dashboard from '../Components/Dashboard';
 
 const AppRouter = () => {
   return (
@@ -20,6 +21,7 @@ const AppRouter = () => {
         <Route path='/myprofile' component={MyProfile} />
         <Route path='/profiles' component={Profiles} />
         <Route path='/updateProfile' component={UpdateProfile} />
+        <Route path='/dashboard' component={Dashboard} />
       </Switch>
     </BrowserRouter>
   );
