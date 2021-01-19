@@ -1,5 +1,10 @@
 import axios from 'axios';
-import { GET_USERS, ADD_USER, LOGIN_USER } from './ActionConstants';
+import {
+  GET_USERS,
+  ADD_USER,
+  LOGIN_USER,
+  LOGOUT_USER,
+} from './ActionConstants';
 
 export const getUsers = () => {
   return async (dispatch) => {
@@ -19,9 +24,10 @@ export const addUser = (user) => {
   return async (dispatch) => {
     try {
       const users = await axios.post('/users', user);
+      console.log(users);
       dispatch({
         type: ADD_USER,
-        payload: users.data,
+        payload: users.data.newUser,
       });
     } catch (error) {
       console.log(error);
@@ -36,10 +42,6 @@ export const LoginUser = (user) => {
       const res = await axios({
         method: 'post',
         url: '/users/login',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application.json',
-        },
         data: user,
       });
       console.log(res.data.user);
@@ -51,5 +53,13 @@ export const LoginUser = (user) => {
     } catch (error) {
       console.log(error);
     }
+  };
+};
+
+export const LogoutUser = (user) => {
+  return (dispatch) => {
+    dispatch({
+      type: LOGOUT_USER,
+    });
   };
 };

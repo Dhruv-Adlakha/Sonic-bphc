@@ -1,4 +1,9 @@
-import { GET_USERS, ADD_USER, LOGIN_USER } from '../Actions/ActionConstants';
+import {
+  GET_USERS,
+  ADD_USER,
+  LOGIN_USER,
+  LOGOUT_USER,
+} from '../Actions/ActionConstants';
 
 const initState = {
   posts: [],
@@ -12,19 +17,28 @@ const reducer = (state = initState, action) => {
   switch (action.type) {
     case GET_USERS:
       return {
+        ...state,
         users: action.payload,
         isAuthenticated: true,
       };
     case ADD_USER:
       return {
+        ...state,
         currentUser: action.payload,
         users: state.users.concat(action.payload),
         isAuthenticated: true,
       };
     case LOGIN_USER:
       return {
+        ...state,
         currentUser: action.payload,
         isAuthenticated: true,
+      };
+    case LOGOUT_USER:
+      return {
+        ...state,
+        currentUser: undefined,
+        isAuthenticated: false,
       };
     default:
       return {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { addUser } from '../Redux/Actions/Actions';
 import { connect } from 'react-redux';
 
@@ -107,6 +107,7 @@ class Signup extends React.Component {
           <p>
             Already Have an account? <NavLink to='/login'>Login here</NavLink>
           </p>
+          {this.props.isAuthenticated && <Redirect to='/dashboard' />}
         </div>
       </section>
     );
