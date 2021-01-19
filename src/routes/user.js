@@ -47,7 +47,6 @@ router.post('/users', async (req, res) => {
 //Route for logging in a user
 router.post('/users/login', async (req, res) => {
   try {
-    console.log(req.body);
     const passwordEntered = req.body.password;
     const hashedPasswordEntered = await bcrypt.hash(
       JSON.stringify(passwordEntered),
@@ -83,13 +82,14 @@ router.post('/users/logout', auth, async (req, res) => {
 });
 
 //Route for updating a user
-router.patch('/users/:id', auth, async (req, res) => {
+router.patch('/users', auth, async (req, res) => {
   const updates = Object.keys(req.body);
   try {
-    const user = await User.findById(req.params.id);
+    const user = await User.findById(req.user._id);
     updates.forEach((update) => {
       user[update] = req.body[update];
     });
+
     await user.save();
     res.send(user);
   } catch (error) {

@@ -4,6 +4,7 @@ import {
   ADD_USER,
   LOGIN_USER,
   LOGOUT_USER,
+  UPDATE_USER,
 } from './ActionConstants';
 
 export const getUsers = () => {
@@ -61,5 +62,30 @@ export const LogoutUser = (user) => {
     dispatch({
       type: LOGOUT_USER,
     });
+  };
+};
+
+export const updateUser = (user) => {
+  return async (dispatch) => {
+    const token = localStorage.getItem('token');
+    try {
+      const updatedUser = await axios({
+        method: 'patch',
+        url: '/users',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        data: user,
+      });
+
+      dispatch({
+        type: UPDATE_USER,
+        payload: updatedUser.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 };

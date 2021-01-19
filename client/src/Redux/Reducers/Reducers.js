@@ -3,6 +3,7 @@ import {
   ADD_USER,
   LOGIN_USER,
   LOGOUT_USER,
+  UPDATE_USER,
 } from '../Actions/ActionConstants';
 
 const initState = {
@@ -39,6 +40,11 @@ const reducer = (state = initState, action) => {
         ...state,
         currentUser: undefined,
         isAuthenticated: false,
+      };
+    case UPDATE_USER:
+      return {
+        ...state,
+        currentUser: action.payload,
       };
     default:
       return {
