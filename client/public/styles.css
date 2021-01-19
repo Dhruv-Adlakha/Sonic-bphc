@@ -86,36 +86,36 @@ body {
   color: #dfe4ea;
 }
 
-/* navbar */
-navbar {
+/* #navbar */
+#navbar {
   background: #2f3542;
   display: block;
   overflow: auto;
   color: #dfe4ea;
 }
 
-navbar h1 {
+#navbar h1 {
   float: left;
   padding-top: 24px;
 }
 
-navbar h1 a {
+#navbar h1 a {
   color: #dfe4ea;
   text-decoration: none;
   font-size: 40px;
 }
 
-navbar ul {
+#navbar ul {
   color: #dfe4ea;
   float: right;
   list-style: none;
 }
 
-navbar ul li {
+#navbar ul li {
   float: left;
 }
 
-navbar ul li a {
+#navbar ul li a {
   /* padding: 20px; */
   display: block;
   text-align: center;
@@ -125,7 +125,7 @@ navbar ul li a {
   padding: 30px;
 }
 
-navbar ul li a:hover {
+#navbar ul li a:hover {
   background: rgb(20, 6, 6);
   cursor: pointer;
   color: #7bed9f;

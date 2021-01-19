@@ -42,7 +42,7 @@ export const LoginUser = (user) => {
         },
         data: user,
       });
-
+      console.log(res.data.user);
       localStorage.setItem('token', res.data.token);
       dispatch({
         type: LOGIN_USER,

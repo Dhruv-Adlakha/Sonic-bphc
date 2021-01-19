@@ -13,6 +13,7 @@ const reducer = (state = initState, action) => {
     case GET_USERS:
       return {
         users: action.payload,
+        isAuthenticated: true,
       };
     case ADD_USER:
       return {
