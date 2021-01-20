@@ -11,6 +11,7 @@ class Navbar extends React.Component {
   handleLogout() {
     this.props.dispatch(LogoutUser(this.props.currentUser));
   }
+
   render() {
     return (
       <div id='navbar'>
@@ -21,25 +22,31 @@ class Navbar extends React.Component {
             </h1>
             <ul>
               <li>
-                <NavLink to='/about'>About</NavLink>
+                <NavLink to='/about' activeClassName='activeLink'>
+                  About
+                </NavLink>
               </li>
             </ul>
           </div>
         )}
         {this.props.isAuthenticated && (
           <div className='container'>
-            <h1>
-              <NavLink to='/'>SONIC</NavLink>
-            </h1>
+            <h1>SONIC</h1>
             <ul>
               <li>
-                <NavLink to='/dashboard'>Dashboard</NavLink>
+                <NavLink to='/dashboard' activeClassName='activeLink'>
+                  Dashboard
+                </NavLink>
               </li>
               <li>
-                <NavLink to='/profiles'>Profiles</NavLink>
+                <NavLink to='/profiles' activeClassName='activeLink'>
+                  Profiles
+                </NavLink>
               </li>
               <li>
-                <NavLink to='/posts'>Posts</NavLink>
+                <NavLink to='/posts' activeClassName='activeLink'>
+                  Posts
+                </NavLink>
               </li>
               <li>
                 <NavLink to='/' onClick={this.handleLogout}>

@@ -4,6 +4,8 @@ import {
   LOGIN_USER,
   LOGOUT_USER,
   UPDATE_USER,
+  GET_POSTS,
+  ADD_POST,
 } from '../Actions/ActionConstants';
 
 const initState = {
@@ -45,6 +47,16 @@ const reducer = (state = initState, action) => {
       return {
         ...state,
         currentUser: action.payload,
+      };
+    case GET_POSTS:
+      return {
+        ...state,
+        posts: action.payload,
+      };
+    case ADD_POST:
+      return {
+        ...state,
+        posts: state.posts.concat(action.payload),
       };
     default:
       return {

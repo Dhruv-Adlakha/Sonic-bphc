@@ -34,8 +34,8 @@ router.post('/users', async (req, res) => {
     const password = req.body.password;
     const hashedPassword = await bcrypt.hash(password, 8);
     newUser.password = hashedPassword;
-    await newUser.save();
     const token = await newUser.generateAuthToken();
+    await newUser.save();
 
     res.status(201).send({ newUser, token });
   } catch (error) {
@@ -71,9 +71,8 @@ router.post('/users/login', async (req, res) => {
 router.post('/users/logout', auth, async (req, res) => {
   try {
     const token = req.header('Authorization').replace('Bearer ', '');
-    req.user.tokens = req.user.tokens.filter((usertoken) => {
-      return usertoken.token !== token;
-    });
+    console.log(token);
+    req.user.token = undefined;
     await req.user.save();
     res.send();
   } catch (error) {

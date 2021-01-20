@@ -44,14 +44,9 @@ const userSchema = new mongoose.Schema({
       }
     },
   },
-  tokens: [
-    {
-      token: {
-        type: String,
-        required: true,
-      },
-    },
-  ],
+  token: {
+    type: String,
+  },
 });
 
 userSchema.methods.generateAuthToken = async function () {
@@ -59,7 +54,7 @@ userSchema.methods.generateAuthToken = async function () {
   const token = await jwt.sign({ _id: user._id.toString() }, 'SecretKeyDhruv', {
     expiresIn: 120000,
   });
-  user.tokens = await user.tokens.concat({ token });
+  user.token = token;
   await user.save();
   return token;
 };

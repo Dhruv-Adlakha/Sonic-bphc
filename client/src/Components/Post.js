@@ -5,15 +5,10 @@ class Post extends React.Component {
     return (
       <div className='post'>
         <div className='post-titlebar'>
-          <h3>Title: First post</h3>
-          <h5>Created on: 25/04/2021</h5>
+          <h3>Title: {this.props && this.props.post.title}</h3>
+          <h5>Created by: {this.props && this.props.post.createdBy}</h5>
         </div>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum porro
-          accusamus, iste cum reiciendis eum quas voluptatem ut accusantium
-          possimus quod quisquam dicta incidunt dolores nostrum, eius
-          necessitatibus! Qui, sequi.
-        </p>
+        <p>{this.props && this.props.post.body}</p>
         <div className='post-feedback'>
           <button>
             <i className='far fa-thumbs-up fa-3x'></i>

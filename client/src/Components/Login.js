@@ -19,9 +19,9 @@ class Login extends React.Component {
       [e.target.name]: e.target.value,
     });
   }
-  onSubmit(e) {
+  async onSubmit(e) {
     e.preventDefault();
-    this.props.dispatch(LoginUser(this.state));
+    await this.props.dispatch(LoginUser(this.state));
   }
   render() {
     return (

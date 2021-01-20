@@ -39,8 +39,7 @@ class UpdateProfile extends React.Component {
               <input
                 className='form-input'
                 type='text'
-                defaultValue={this.state && this.state.name}
-                onChange={this.onChangeHandler}
+                value={this.state && this.state.name}
                 name='name'
               />
             </div>
