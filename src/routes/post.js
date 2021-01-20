@@ -28,7 +28,7 @@ router.get('/posts/:id', auth, async (req, res) => {
 router.post('/posts', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user._id);
-    console.log(user);
+
     const post = new Post({
       ...req.body,
       creator: req.user._id,
