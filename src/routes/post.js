@@ -1,5 +1,6 @@
 const express = require('express');
 const Post = require('../models/Post');
+const User = require('../models/User');
 const auth = require('../middleware/auth');
 const router = express.Router();
 
@@ -25,11 +26,14 @@ router.get('/posts/:id', auth, async (req, res) => {
 
 //route for creating a post
 router.post('/posts', auth, async (req, res) => {
-  const post = new Post({
-    ...req.body,
-    creator: req.user._id,
-  });
   try {
+    const user = await User.findById(req.user._id);
+    console.log(user);
+    const post = new Post({
+      ...req.body,
+      creator: req.user._id,
+      createdBy: user.name,
+    });
     await post.save();
     res.status(201).send(post);
   } catch (error) {
