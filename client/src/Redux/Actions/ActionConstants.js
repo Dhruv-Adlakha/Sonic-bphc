@@ -5,6 +5,6 @@ export const LOGOUT_USER = 'LOGOUT_USER';
 export const UPDATE_USER = 'UPDATE_USER';
 export const GET_POSTS = 'GET_POSTS';
 export const ADD_POST = 'ADD_POST';
-export const LOADING = 'LOADING';
 export const DELETE_USER = 'DELETE_USER';
 export const DELETE_POST = 'DELETE_POST';
+export const LOADING = 'LOADING';

@@ -32,6 +32,9 @@ class Signup extends React.Component {
   }
 
   render() {
+    if (this.props.loading) {
+      return <Spinner />;
+    }
     return (
       <section id='signup' className='signup-back'>
         <div className='back'>

@@ -3,19 +3,28 @@ import Post from './Post';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getPosts } from '../Redux/Actions/Actions';
+import Spinner from './Spinner';
 
 class Posts extends React.Component {
   constructor(props) {
     super(props);
     this.refreshPage = this.refreshPage.bind(this);
+    this.printer = this.printer.bind(this);
   }
-  componentDidMount(props) {
-    this.props.dispatch(getPosts());
+  async componentDidMount(props) {
+    await this.props.dispatch(getPosts());
   }
   refreshPage() {
     this.props.dispatch(getPosts());
   }
+  printer() {
+    console.log('dhruv ', this.props.loading);
+  }
   render() {
+    if (this.props.loading) {
+      return <Spinner />;
+    }
+
     return (
       <div className='posts-section'>
         <h1>Posts</h1>
@@ -36,9 +45,10 @@ class Posts extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log('mapstatetoprops');
+  console.log('mapstatetoprops posts' + state.loading);
   return {
     posts: state.posts,
+    loading: state.loading,
   };
 };
 

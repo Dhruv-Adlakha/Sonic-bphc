@@ -51,6 +51,9 @@ export const addUser = (user) => {
 
 export const LoginUser = (user) => {
   return async (dispatch) => {
+    dispatch({
+      type: LOADING,
+    });
     try {
       console.log(user);
       const res = await axios({
@@ -81,6 +84,9 @@ export const LogoutUser = (user) => {
 
 export const updateUser = (user) => {
   return async (dispatch) => {
+    dispatch({
+      type: LOADING,
+    });
     const token = localStorage.getItem('token');
     try {
       const updatedUser = await axios({
@@ -107,6 +113,9 @@ export const updateUser = (user) => {
 
 export const getPosts = () => {
   return async (dispatch) => {
+    dispatch({
+      type: LOADING,
+    });
     try {
       const token = localStorage.getItem('token');
       const posts = await axios({
@@ -132,6 +141,9 @@ export const getPosts = () => {
 
 export const addPost = (post) => {
   return async (dispatch) => {
+    dispatch({
+      type: LOADING,
+    });
     try {
       const token = localStorage.getItem('token');
       const newpost = await axios({
@@ -156,6 +168,9 @@ export const addPost = (post) => {
 
 export const deleteUser = () => {
   return async (dispatch) => {
+    dispatch({
+      type: LOADING,
+    });
     try {
       const token = localStorage.getItem('token');
       const user = await axios({
@@ -181,6 +196,10 @@ export const deleteUser = () => {
 
 export const deletePost = (post) => {
   return async (dispatch) => {
+    dispatch({
+      type: LOADING,
+    });
+    console.log('deleeeeeeeeeee');
     try {
       const token = localStorage.getItem('token');
       console.log(token, post);

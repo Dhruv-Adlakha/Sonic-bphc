@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { LoginUser } from '../Redux/Actions/Actions';
+import Spinner from './Spinner';
 
 class Login extends React.Component {
   constructor(props) {
@@ -24,6 +25,9 @@ class Login extends React.Component {
     await this.props.dispatch(LoginUser(this.state));
   }
   render() {
+    if (this.props.loading) {
+      return <Spinner />;
+    }
     return (
       <section id='login'>
         <div className='back'>

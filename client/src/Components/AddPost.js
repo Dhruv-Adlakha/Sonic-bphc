@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addPost } from '../Redux/Actions/Actions';
 import { Redirect } from 'react-router';
+import Spinner from './Spinner';
 
 class AddPost extends React.Component {
   constructor(props) {
@@ -31,6 +32,9 @@ class AddPost extends React.Component {
     this.props.dispatch(addPost(newpost));
   }
   render() {
+    if (this.props.loading) {
+      return <Spinner />;
+    }
     return (
       <div className='add-post-back'>
         <div className='add-post'>
@@ -52,7 +56,9 @@ class AddPost extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    loading: state.loading,
+  };
 };
 
 export default connect(mapStateToProps)(AddPost);

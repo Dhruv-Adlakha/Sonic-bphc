@@ -72,6 +72,12 @@ const reducer = (state = initState, action) => {
     case DELETE_POST:
       return {
         ...state,
+        loading: false,
+      };
+    case LOADING:
+      return {
+        ...state,
+        loading: true,
       };
     default:
       return {

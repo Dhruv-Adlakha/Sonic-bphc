@@ -52,7 +52,9 @@ class Dashboard extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    loading: state.loading,
+  };
 };
 
 export default connect(mapStateToProps)(Dashboard);

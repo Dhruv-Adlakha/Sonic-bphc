@@ -2,26 +2,23 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import { deletePost, getPosts } from '../Redux/Actions/Actions';
+import Spinner from './Spinner';
 
 class Post extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      del: false,
-    };
     this.onDeleteClick = this.onDeleteClick.bind(this);
   }
 
-  onDeleteClick() {
-    this.props.dispatch(deletePost(this.props.post));
-
-    this.setState({
-      del: true,
-    });
+  async onDeleteClick() {
+    await this.props.dispatch(deletePost(this.props.post));
     this.props.refreshPage();
   }
 
   render() {
+    if (this.props.loading) {
+      return <Spinner />;
+    }
     return (
       <div className='post'>
         <div className='post-titlebar'>
@@ -39,7 +36,7 @@ class Post extends React.Component {
           <button>
             <i className='far fa-comment-dots fa-3x'></i>
           </button>
-          {this.props.post.createdBy === this.props.currentUser.name && (
+          {this.props.post.creator === this.props.currentUser._id && (
             <button onClick={this.onDeleteClick}>
               <i className='far fa-trash-alt fa-3x red-color'></i>
             </button>
