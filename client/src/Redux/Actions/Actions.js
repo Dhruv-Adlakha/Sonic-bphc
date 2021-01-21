@@ -9,6 +9,7 @@ import {
   ADD_POST,
   LOADING,
   DELETE_USER,
+  DELETE_POST,
 } from './ActionConstants';
 
 export const getUsers = () => {
@@ -172,6 +173,32 @@ export const deleteUser = () => {
         type: DELETE_USER,
       });
       return user;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const deletePost = (post) => {
+  return async (dispatch) => {
+    try {
+      const token = localStorage.getItem('token');
+      console.log(token, post);
+      const dpost = await axios({
+        method: 'delete',
+        url: '/posts',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        data: post,
+      });
+      console.log(dpost);
+      dispatch({
+        type: DELETE_POST,
+      });
+      return post;
     } catch (error) {
       console.log(error);
     }

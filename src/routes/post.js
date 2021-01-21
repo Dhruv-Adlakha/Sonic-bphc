@@ -42,17 +42,20 @@ router.post('/posts', auth, async (req, res) => {
 });
 
 //route for deleting a post
-router.delete('/posts/:id', auth, async (req, res) => {
+router.delete('/posts', auth, async (req, res) => {
   const userCreator = req.user._id;
   try {
-    const postCreator = await Post.findById(req.params.id);
+    console.log(req.body);
+    const postCreator = await Post.findById(req.body._id);
+    console.log(userCreator, postCreator);
     if (!postCreator) {
       return res.status(404).send();
     }
+
     if (JSON.stringify(postCreator.creator) !== JSON.stringify(userCreator)) {
       return res.status(500).send('You are not allowed to delete this post');
     }
-    const post = await Post.findByIdAndDelete(req.params.id);
+    const post = await Post.findByIdAndDelete(req.body._id);
 
     res.send(post);
   } catch (error) {

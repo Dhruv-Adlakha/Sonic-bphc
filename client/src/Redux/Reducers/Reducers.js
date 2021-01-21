@@ -7,6 +7,7 @@ import {
   GET_POSTS,
   ADD_POST,
   DELETE_USER,
+  DELETE_POST,
   LOADING,
 } from '../Actions/ActionConstants';
 
@@ -67,6 +68,10 @@ const reducer = (state = initState, action) => {
         ...state,
         posts: state.posts.concat(action.payload),
         loading: false,
+      };
+    case DELETE_POST:
+      return {
+        ...state,
       };
     default:
       return {

@@ -5,7 +5,14 @@ import { connect } from 'react-redux';
 import { getPosts } from '../Redux/Actions/Actions';
 
 class Posts extends React.Component {
+  constructor(props) {
+    super(props);
+    this.refreshPage = this.refreshPage.bind(this);
+  }
   componentDidMount(props) {
+    this.props.dispatch(getPosts());
+  }
+  refreshPage() {
     this.props.dispatch(getPosts());
   }
   render() {
@@ -18,7 +25,9 @@ class Posts extends React.Component {
         <div className='posts'>
           {this.props &&
             this.props.posts.map((post, index) => {
-              return <Post key={index} post={post} />;
+              return (
+                <Post key={index} post={post} refreshPage={this.refreshPage} />
+              );
             })}
         </div>
       </div>
