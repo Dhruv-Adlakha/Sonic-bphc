@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { LogoutUser } from '../Redux/Actions/Actions';
+import logo from '../spinner/fav.png';
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -18,7 +19,10 @@ class Navbar extends React.Component {
         {!this.props.isAuthenticated && (
           <div className='container'>
             <h1>
-              <NavLink to='/'>SONIC</NavLink>
+              <NavLink to='/'>
+                <img src={logo} alt='logo' className='navbar-logo' />
+                SONIC
+              </NavLink>
             </h1>
             <ul>
               <li>
@@ -31,7 +35,10 @@ class Navbar extends React.Component {
         )}
         {this.props.isAuthenticated && (
           <div className='container'>
-            <h1>SONIC</h1>
+            <h1>
+              <img src={logo} alt='logo' className='navbar-logo' />
+              SONIC
+            </h1>
             <ul>
               <li>
                 <NavLink to='/dashboard' activeClassName='activeLink'>

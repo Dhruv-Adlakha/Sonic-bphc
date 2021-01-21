@@ -35,37 +35,41 @@ class Login extends React.Component {
         {this.props.error && <Error text='Invalid credentials' />}
         <div className='back'>
           <h1>Login</h1>
+
           <form onSubmit={this.onSubmit}>
-            <div className='login-element'>
-              <label for='name'>Name</label>
-              <input
-                className='form-input'
-                type='text'
-                name='name'
-                onChange={this.onChangeHandler}
-              />
+            <div className='form'>
+              <div className='login-element'>
+                <label for='name'>Name</label>
+                <input
+                  className='form-input'
+                  type='text'
+                  name='name'
+                  onChange={this.onChangeHandler}
+                />
+              </div>
+              <div className='clr'></div>
+              <div className='login-element'>
+                <label for='email'>Email</label>
+                <input
+                  className='form-input'
+                  type='email'
+                  name='email'
+                  onChange={this.onChangeHandler}
+                />
+              </div>
+              <div className='clr'></div>
+              <div className='login-element'>
+                <label for='password'>Password</label>
+                <input
+                  className='form-input'
+                  type='password'
+                  name='password'
+                  onChange={this.onChangeHandler}
+                />
+              </div>
+              <div className='clr'></div>
             </div>
-            <div className='clr'></div>
-            <div className='login-element'>
-              <label for='email'>Email</label>
-              <input
-                className='form-input'
-                type='email'
-                name='email'
-                onChange={this.onChangeHandler}
-              />
-            </div>
-            <div className='clr'></div>
-            <div className='login-element'>
-              <label for='password'>Password</label>
-              <input
-                className='form-input'
-                type='password'
-                name='password'
-                onChange={this.onChangeHandler}
-              />
-            </div>
-            <div className='clr'></div>
+
             <div className='submit'>
               <button className='btn' type='submit'>
                 Submit

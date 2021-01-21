@@ -3,7 +3,10 @@ import { NavLink } from 'react-router-dom';
 
 const LandingPage = () => (
   <section id='landing'>
-    <h1>Hey! connect to the Campus</h1>
+    <h1>
+      <span>SO</span>cial <span>N</span>etworking <span>I</span>n <span>C</span>
+      ampus
+    </h1>
     <div className='landing-buttons'>
       <NavLink className='btn' to='/signup'>
         Sign up

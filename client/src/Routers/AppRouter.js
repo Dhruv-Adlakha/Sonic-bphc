@@ -10,6 +10,7 @@ import UpdateProfile from '../Components/UpdateProfile';
 import Dashboard from '../Components/Dashboard';
 import Posts from '../Components/Posts';
 import AddPost from '../Components/AddPost';
+import Comments from '../Components/Comments';
 
 const AppRouter = () => {
   return (
@@ -26,6 +27,7 @@ const AppRouter = () => {
         <Route path='/dashboard' component={Dashboard} />
         <Route path='/posts' component={Posts} exact={true} />
         <Route path='/addpost' component={AddPost} />
+        <Route path='/comments' component={Comments} />
       </Switch>
     </BrowserRouter>
   );

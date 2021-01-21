@@ -43,68 +43,71 @@ class Signup extends React.Component {
         )}
         <div className='back'>
           <h1>Sign up</h1>
-          <form onSubmit={this.onSubmitHandler}>
-            <div className='signup-element'>
-              <label for='name'>Name</label>
-              <input
-                className='form-input'
-                type='text'
-                name='name'
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className='clr'></div>
-            <div className='signup-element'>
-              <label for='email'>Email</label>
-              <input
-                className='form-input'
-                type='email'
-                name='email'
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className='clr'></div>
-            <div className='signup-element'>
-              <label for='password'>Password</label>
-              <input
-                className='form-input'
-                type='password'
-                name='password'
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className='clr'></div>
-            <div className='signup-element'>
-              <label for='status'>Status</label>
-              <input
-                className='form-input'
-                type='text'
-                name='status'
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className='clr'></div>
 
-            <div className='signup-element'>
-              <label for='age'>Age</label>
-              <input
-                className='form-input'
-                type='text'
-                name='age'
-                onChange={this.handleChange}
-              />
+          <form onSubmit={this.onSubmitHandler}>
+            <div className='form'>
+              <div className='signup-element'>
+                <label for='name'>Name</label>
+                <input
+                  className='form-input'
+                  type='text'
+                  name='name'
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className='clr'></div>
+              <div className='signup-element'>
+                <label for='email'>Email</label>
+                <input
+                  className='form-input'
+                  type='email'
+                  name='email'
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className='clr'></div>
+              <div className='signup-element'>
+                <label for='password'>Password</label>
+                <input
+                  className='form-input'
+                  type='password'
+                  name='password'
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className='clr'></div>
+              <div className='signup-element'>
+                <label for='status'>Status</label>
+                <input
+                  className='form-input'
+                  type='text'
+                  name='status'
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className='clr'></div>
+
+              <div className='signup-element'>
+                <label for='age'>Age</label>
+                <input
+                  className='form-input'
+                  type='text'
+                  name='age'
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className='clr'></div>
+              <div className='signup-element'>
+                <label for='hometown'>Hometown</label>
+                <input
+                  className='form-input'
+                  type='text'
+                  name='hometown'
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className='clr'></div>
             </div>
-            <div className='clr'></div>
-            <div className='signup-element'>
-              <label for='hometown'>Hometown</label>
-              <input
-                className='form-input'
-                type='text'
-                name='hometown'
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className='clr'></div>
             <div className='submit'>
               <button type='submit' className='btn'>
                 Submit
