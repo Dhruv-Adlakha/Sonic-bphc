@@ -3,6 +3,7 @@ import { NavLink, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { LoginUser } from '../Redux/Actions/Actions';
 import Spinner from './Spinner';
+import Error from './Error';
 
 class Login extends React.Component {
   constructor(props) {
@@ -28,8 +29,10 @@ class Login extends React.Component {
     if (this.props.loading) {
       return <Spinner />;
     }
+
     return (
       <section id='login'>
+        {this.props.error && <Error text='Invalid credentials' />}
         <div className='back'>
           <h1>Login</h1>
           <form onSubmit={this.onSubmit}>

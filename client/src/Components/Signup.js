@@ -3,6 +3,7 @@ import { NavLink, Redirect } from 'react-router-dom';
 import { addUser } from '../Redux/Actions/Actions';
 import { connect } from 'react-redux';
 import Spinner from './Spinner';
+import Error from './Error';
 
 class Signup extends React.Component {
   constructor(props) {
@@ -37,6 +38,9 @@ class Signup extends React.Component {
     }
     return (
       <section id='signup' className='signup-back'>
+        {this.props.error && (
+          <Error text='Age should be a number, password should be of length greater than 7 and should not include "password" and fill all fields' />
+        )}
         <div className='back'>
           <h1>Sign up</h1>
           <form onSubmit={this.onSubmitHandler}>
@@ -121,4 +125,5 @@ class Signup extends React.Component {
 export default connect((state) => ({
   isAuthenticated: state.isAuthenticated,
   loading: state.loading,
+  error: state.error,
 }))(Signup);

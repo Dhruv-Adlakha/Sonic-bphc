@@ -8,3 +8,7 @@ export const ADD_POST = 'ADD_POST';
 export const DELETE_USER = 'DELETE_USER';
 export const DELETE_POST = 'DELETE_POST';
 export const LOADING = 'LOADING';
+export const ALERT_ERROR = 'ALERT_ERROR';
+export const REMOVE_ERROR = 'REMOVE_ERROR';
+export const ERROR_RESOLVE = 'ERROR_RESOLVE';
+export const ERROR_OCCUR = 'ERROR_OCCUR';

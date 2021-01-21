@@ -9,6 +9,8 @@ import {
   DELETE_USER,
   DELETE_POST,
   LOADING,
+  ERROR_OCCUR,
+  ERROR_RESOLVE,
 } from '../Actions/ActionConstants';
 
 const initState = {
@@ -17,6 +19,7 @@ const initState = {
   currentUser: undefined,
   isAuthenticated: false,
   loading: false,
+  error: false,
 };
 
 const reducer = (state = initState, action) => {
@@ -28,6 +31,7 @@ const reducer = (state = initState, action) => {
         users: action.payload,
         isAuthenticated: true,
         loading: false,
+        error: false,
       };
     case ADD_USER:
       return {
@@ -35,6 +39,7 @@ const reducer = (state = initState, action) => {
         currentUser: action.payload,
         isAuthenticated: true,
         loading: false,
+        error: false,
       };
     case LOGIN_USER:
       return {
@@ -42,6 +47,7 @@ const reducer = (state = initState, action) => {
         currentUser: action.payload,
         isAuthenticated: true,
         loading: false,
+        error: false,
       };
     case DELETE_USER:
     case LOGOUT_USER:
@@ -50,34 +56,52 @@ const reducer = (state = initState, action) => {
         currentUser: undefined,
         isAuthenticated: false,
         loading: false,
+        error: false,
       };
     case UPDATE_USER:
       return {
         ...state,
         currentUser: action.payload,
         loading: false,
+        error: false,
       };
     case GET_POSTS:
       return {
         ...state,
         posts: action.payload,
         loading: false,
+        error: false,
       };
     case ADD_POST:
       return {
         ...state,
         posts: state.posts.concat(action.payload),
         loading: false,
+        error: false,
       };
     case DELETE_POST:
       return {
         ...state,
         loading: false,
+        error: false,
       };
     case LOADING:
       return {
         ...state,
         loading: true,
+        error: false,
+      };
+    case ERROR_OCCUR:
+      return {
+        ...state,
+        error: true,
+        loading: false,
+      };
+    case ERROR_RESOLVE:
+      return {
+        ...state,
+        error: false,
+        loading: false,
       };
     default:
       return {

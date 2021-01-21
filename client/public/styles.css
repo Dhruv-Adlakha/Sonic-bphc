@@ -509,3 +509,17 @@ body {
 .red-color2 {
   color: red;
 }
+
+/* error */
+.error {
+  background: red !important;
+  color: whitesmoke;
+  width: 50vw;
+  margin: auto;
+  padding: 10px;
+
+  border-radius: 10px;
+}
+.error h4 {
+  text-align: center;
+}

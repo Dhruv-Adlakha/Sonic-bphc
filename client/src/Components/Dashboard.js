@@ -2,20 +2,27 @@ import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { deleteUser } from '../Redux/Actions/Actions';
-
+import Error from './Error';
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      updated: false,
+    };
     this.onClickHandler = this.onClickHandler.bind(this);
   }
 
-  onClickHandler() {
-    this.props.dispatch(deleteUser());
+  async onClickHandler() {
+    await this.props.dispatch(deleteUser());
+    this.setState({
+      updated: !this.state.error,
+    });
   }
 
   render() {
     return (
       <div className='dashboard'>
+        {this.props.error && <Error text='Some error occured' />}
         <div className='dashboard-card'>
           <i class='fa fa-users fa-5x' aria-hidden='true'></i>
           <Link to='/profiles' className='btn'>
@@ -42,10 +49,11 @@ class Dashboard extends React.Component {
         </div>
         <div className='dashboard-card'>
           <i class='fas fa-user-times fa-5x red-color'></i>
-          <Link to='/' className='btn red-color2' onClick={this.onClickHandler}>
+          <button className='btn red-color2' onClick={this.onClickHandler}>
             Delete profile
-          </Link>
+          </button>
         </div>
+        {this.state.updated && <Redirect to='/' />}
       </div>
     );
   }
@@ -54,6 +62,7 @@ class Dashboard extends React.Component {
 const mapStateToProps = (state) => {
   return {
     loading: state.loading,
+    error: state.error,
   };
 };
 

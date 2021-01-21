@@ -47,6 +47,9 @@ router.post('/users', async (req, res) => {
 //Route for logging in a user
 router.post('/users/login', async (req, res) => {
   try {
+    if (!req.body.name || !req.body.email || !req.body.password) {
+      return res.status(401).send('All fields not filled');
+    }
     const passwordEntered = req.body.password;
     const hashedPasswordEntered = await bcrypt.hash(
       JSON.stringify(passwordEntered),

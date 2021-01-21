@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import { deletePost, getPosts } from '../Redux/Actions/Actions';
 import Spinner from './Spinner';
+import Error from './Error';
 
 class Post extends React.Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class Post extends React.Component {
 
   async onDeleteClick() {
     await this.props.dispatch(deletePost(this.props.post));
-    this.props.refreshPage();
+    if (!this.props.error) this.props.refreshPage();
   }
 
   render() {
@@ -21,6 +22,7 @@ class Post extends React.Component {
     }
     return (
       <div className='post'>
+        {this.props.error && <Error text='Post could not be deleted' />}
         <div className='post-titlebar'>
           <h3>Title: {this.props && this.props.post.title}</h3>
           <h5>Created by: {this.props && this.props.post.createdBy}</h5>
@@ -50,6 +52,7 @@ class Post extends React.Component {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.currentUser,
+    error: state.error,
   };
 };
 

@@ -8,6 +8,7 @@ class MyProfile extends React.Component {
     if (this.props.loading) {
       return <Spinner />;
     }
+
     return (
       <section id='my-profile'>
         <img src='./img/image1.png' alt='Profile-page' />
@@ -46,6 +47,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.currentUser,
     loading: state.loading,
+    error: state.error,
   };
 };
 

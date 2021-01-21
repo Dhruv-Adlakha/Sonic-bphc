@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { addPost } from '../Redux/Actions/Actions';
 import { Redirect } from 'react-router';
 import Spinner from './Spinner';
+import Error from './Error';
 
 class AddPost extends React.Component {
   constructor(props) {
@@ -20,16 +21,16 @@ class AddPost extends React.Component {
       [e.target.name]: e.target.value,
     });
   }
-  onSubmitHandler(e) {
+  async onSubmitHandler(e) {
     e.preventDefault();
-    this.setState({
-      updated: true,
-    });
     const newpost = {
       title: this.state.title,
       body: this.state.body,
     };
-    this.props.dispatch(addPost(newpost));
+    await this.props.dispatch(addPost(newpost));
+    this.setState({
+      updated: !this.props.error,
+    });
   }
   render() {
     if (this.props.loading) {
@@ -37,6 +38,7 @@ class AddPost extends React.Component {
     }
     return (
       <div className='add-post-back'>
+        {this.props.error && <Error text='Invalid post' />}
         <div className='add-post'>
           <h1>Add new post</h1>
           <form onSubmit={this.onSubmitHandler}>
@@ -48,8 +50,8 @@ class AddPost extends React.Component {
             </div>
             <button className='btn'>Add Post</button>
           </form>
-          {this.state.updated && <Redirect to='/posts' />}
         </div>
+        {this.state.updated && <Redirect to='/posts' />}
       </div>
     );
   }
@@ -58,6 +60,7 @@ class AddPost extends React.Component {
 const mapStateToProps = (state) => {
   return {
     loading: state.loading,
+    error: state.error,
   };
 };
 

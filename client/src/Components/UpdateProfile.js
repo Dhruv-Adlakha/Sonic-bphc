@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { updateUser } from '../Redux/Actions/Actions';
 import { Redirect } from 'react-router';
 import Spinner from './Spinner';
+import Error from './Error';
 
 class UpdateProfile extends React.Component {
   constructor(props) {
@@ -19,13 +20,13 @@ class UpdateProfile extends React.Component {
       [e.target.name]: e.target.value,
     });
   }
-  onSubmitHandler(e) {
+  async onSubmitHandler(e) {
     e.preventDefault();
     console.log(this.state);
-    this.props.dispatch(updateUser(this.state));
+    await this.props.dispatch(updateUser(this.state));
     this.setState(() => {
       return {
-        updated: true,
+        updated: this.props.error ? false : true,
       };
     });
   }
@@ -35,7 +36,9 @@ class UpdateProfile extends React.Component {
     }
     return (
       <section id='signup'>
+        {this.props.error && <Error text='Invalid update' />}
         <div className='back'>
+          {this.props.error && <h1>Invalid update</h1>}
           <h1>Update profile</h1>
           <form onSubmit={this.onSubmitHandler}>
             <div className='signup-element'>
@@ -110,6 +113,7 @@ class UpdateProfile extends React.Component {
 const mapStateToProps = (state) => ({
   user: state.currentUser,
   loading: state.loading,
+  error: state.error,
 });
 
 export default connect(mapStateToProps)(UpdateProfile);

@@ -10,7 +10,11 @@ import {
   LOADING,
   DELETE_USER,
   DELETE_POST,
+  ERROR_RESOLVE,
+  ERROR_OCCUR,
 } from './ActionConstants';
+
+export const errorHandler = () => {};
 
 export const getUsers = () => {
   return async (dispatch) => {
@@ -25,7 +29,14 @@ export const getUsers = () => {
       });
       return users;
     } catch (error) {
-      console.log(error);
+      dispatch({
+        type: ERROR_OCCUR,
+      });
+      setTimeout(() => {
+        dispatch({
+          type: ERROR_RESOLVE,
+        });
+      }, 1000);
     }
   };
 };
@@ -42,9 +53,17 @@ export const addUser = (user) => {
         type: ADD_USER,
         payload: users.data.newUser,
       });
+      localStorage.setItem('token', users.data.token);
       return users;
     } catch (error) {
-      console.log(error);
+      dispatch({
+        type: ERROR_OCCUR,
+      });
+      setTimeout(() => {
+        dispatch({
+          type: ERROR_RESOLVE,
+        });
+      }, 1500);
     }
   };
 };
@@ -69,16 +88,45 @@ export const LoginUser = (user) => {
       });
       return res.data.user;
     } catch (error) {
-      alert(error);
+      dispatch({
+        type: ERROR_OCCUR,
+      });
+      setTimeout(() => {
+        dispatch({
+          type: ERROR_RESOLVE,
+        });
+      }, 1000);
     }
   };
 };
 
 export const LogoutUser = (user) => {
-  return (dispatch) => {
-    dispatch({
-      type: LOGOUT_USER,
-    });
+  return async (dispatch) => {
+    try {
+      const token = localStorage.getItem('token');
+      await axios({
+        method: 'post',
+        url: '/users/logout',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      localStorage.setItem('token', null);
+      dispatch({
+        type: LOGOUT_USER,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR_OCCUR,
+      });
+      setTimeout(() => {
+        dispatch({
+          type: ERROR_RESOLVE,
+        });
+      }, 1000);
+    }
   };
 };
 
@@ -106,7 +154,14 @@ export const updateUser = (user) => {
       });
       return updateUser.data;
     } catch (error) {
-      alert(error);
+      dispatch({
+        type: ERROR_OCCUR,
+      });
+      setTimeout(() => {
+        dispatch({
+          type: ERROR_RESOLVE,
+        });
+      }, 1000);
     }
   };
 };
@@ -127,14 +182,21 @@ export const getPosts = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      //console.log(posts);
+      console.log(posts);
       dispatch({
         type: GET_POSTS,
         payload: posts.data,
       });
       return posts;
     } catch (error) {
-      console.log(error);
+      dispatch({
+        type: ERROR_OCCUR,
+      });
+      setTimeout(() => {
+        dispatch({
+          type: ERROR_RESOLVE,
+        });
+      }, 1000);
     }
   };
 };
@@ -161,7 +223,14 @@ export const addPost = (post) => {
         payload: newpost.data,
       });
     } catch (error) {
-      console.log(error);
+      dispatch({
+        type: ERROR_OCCUR,
+      });
+      setTimeout(() => {
+        dispatch({
+          type: ERROR_RESOLVE,
+        });
+      }, 1000);
     }
   };
 };
@@ -189,7 +258,9 @@ export const deleteUser = () => {
       });
       return user;
     } catch (error) {
-      console.log(error);
+      dispatch({
+        type: ERROR_RESOLVE,
+      });
     }
   };
 };
@@ -219,7 +290,14 @@ export const deletePost = (post) => {
       });
       return post;
     } catch (error) {
-      console.log(error);
+      dispatch({
+        type: ERROR_OCCUR,
+      });
+      setTimeout(() => {
+        dispatch({
+          type: ERROR_RESOLVE,
+        });
+      }, 1000);
     }
   };
 };
