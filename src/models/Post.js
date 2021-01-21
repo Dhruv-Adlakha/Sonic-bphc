@@ -10,6 +10,18 @@ const postSchema = new mongoose.Schema({
     required: true,
     type: String,
   },
+  comments: [
+    {
+      createdBy: {
+        type: String,
+        required: true,
+      },
+      content: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
   createdBy: {
     required: true,
     type: String,
@@ -19,6 +31,18 @@ const postSchema = new mongoose.Schema({
     ref: 'User',
     required: true,
   },
+  likes: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
+  dislikes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  ],
 });
 
 const Post = mongoose.model('Post', postSchema);

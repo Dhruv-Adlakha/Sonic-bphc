@@ -64,25 +64,72 @@ router.delete('/posts', auth, async (req, res) => {
   }
 });
 
-//route for updating a post
-router.patch('/posts/:id', auth, async (req, res) => {
-  const updates = Object.keys(req.body);
+//route for liking a post
+router.patch('/posts/like/:id', auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     if (!post) {
       return res.status(404).send();
     }
-    if (JSON.stringify(post.creator) != JSON.stringify(req.user._id)) {
-      return res.status(500).send('You are not allowed to update this post');
+    if (post.likes.indexOf(req.user._id) === -1) {
+      post.likes.push(req.user._id);
+      await post.save();
     }
-    updates.forEach((update) => {
-      post[update] = req.body[update];
-    });
+    res.send(post);
+  } catch (error) {
+    res.status(501).send(error);
+  }
+});
+
+//route for disliking a post
+router.patch('/posts/dislike/:id', auth, async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    if (!post) {
+      return res.status(404).send();
+    }
+    if (post.dislikes.indexOf(req.user._id) === -1) {
+      post.dislikes.push(req.user._id);
+      await post.save();
+    }
+    res.send(post);
+  } catch (error) {
+    res.status(501).send(error);
+  }
+});
+
+//route for commenting on a post
+router.patch('/posts/comment/:id', auth, async (req, res) => {
+  try {
+    const commentContent = req.body.content;
+    const post = await Post.findById(req.params.id);
+    if (!post) {
+      return res.status(404).send();
+    }
+    const comment = {
+      createdBy: req.user.name,
+      content: commentContent,
+    };
+    post.comments.push(comment);
     await post.save();
     res.send(post);
   } catch (error) {
-    //console.log(error);
-    res.status(500).send(error);
+    res.status(501).send(error);
+  }
+});
+
+//route for fetching all the comments
+router.get('/posts/comment/:id', auth, async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    if (!post) {
+      return res.status(404).send();
+    }
+    console.log(post);
+    const comments = post.comments;
+    res.send(comments);
+  } catch (error) {
+    res.status(501).send();
   }
 });
 
