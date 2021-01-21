@@ -1,7 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { deleteUser } from '../Redux/Actions/Actions';
 
 class Dashboard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onClickHandler = this.onClickHandler.bind(this);
+  }
+
+  onClickHandler() {
+    this.props.dispatch(deleteUser());
+  }
+
   render() {
     return (
       <div className='dashboard'>
@@ -29,9 +40,19 @@ class Dashboard extends React.Component {
             Update profile
           </Link>
         </div>
+        <div className='dashboard-card'>
+          <i class='fas fa-user-times fa-5x red-color'></i>
+          <Link to='/' className='btn red-color2' onClick={this.onClickHandler}>
+            Delete profile
+          </Link>
+        </div>
       </div>
     );
   }
 }
 
-export default Dashboard;
+const mapStateToProps = (state) => {
+  return {};
+};
+
+export default connect(mapStateToProps)(Dashboard);

@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import { getPosts } from '../Redux/Actions/Actions';
 
 class Posts extends React.Component {
-  async componentDidMount(props) {
-    await this.props.dispatch(getPosts());
+  componentDidMount(props) {
+    this.props.dispatch(getPosts());
   }
   render() {
     return (

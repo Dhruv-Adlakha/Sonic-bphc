@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 import { addUser } from '../Redux/Actions/Actions';
 import { connect } from 'react-redux';
+import Spinner from './Spinner';
 
 class Signup extends React.Component {
   constructor(props) {
@@ -116,4 +117,5 @@ class Signup extends React.Component {
 
 export default connect((state) => ({
   isAuthenticated: state.isAuthenticated,
+  loading: state.loading,
 }))(Signup);

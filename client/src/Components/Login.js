@@ -69,7 +69,7 @@ class Login extends React.Component {
           <p>
             Don't Have an account? <NavLink to='/signup'>Sign up</NavLink>
           </p>
-          {console.log(localStorage.getItem('token'))}
+
           {this.props.isAuthenticated && <Redirect to='/dashboard' />}
         </div>
       </section>

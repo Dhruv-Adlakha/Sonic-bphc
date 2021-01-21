@@ -493,3 +493,19 @@ body {
   margin: auto;
   margin-top: 10px;
 }
+
+/* spinner */
+.spinner {
+  width: 80px;
+  height: 80px;
+  display: block;
+  margin: auto;
+}
+
+.red-color {
+  color: rgb(211, 5, 5);
+}
+
+.red-color2 {
+  color: red;
+}

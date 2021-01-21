@@ -6,6 +6,8 @@ import {
   UPDATE_USER,
   GET_POSTS,
   ADD_POST,
+  DELETE_USER,
+  LOADING,
 } from '../Actions/ActionConstants';
 
 const initState = {
@@ -13,6 +15,7 @@ const initState = {
   users: [],
   currentUser: undefined,
   isAuthenticated: false,
+  loading: false,
 };
 
 const reducer = (state = initState, action) => {
@@ -23,40 +26,47 @@ const reducer = (state = initState, action) => {
         ...state,
         users: action.payload,
         isAuthenticated: true,
+        loading: false,
       };
     case ADD_USER:
       return {
         ...state,
         currentUser: action.payload,
-        users: state.users.concat(action.payload),
         isAuthenticated: true,
+        loading: false,
       };
     case LOGIN_USER:
       return {
         ...state,
         currentUser: action.payload,
         isAuthenticated: true,
+        loading: false,
       };
+    case DELETE_USER:
     case LOGOUT_USER:
       return {
         ...state,
         currentUser: undefined,
         isAuthenticated: false,
+        loading: false,
       };
     case UPDATE_USER:
       return {
         ...state,
         currentUser: action.payload,
+        loading: false,
       };
     case GET_POSTS:
       return {
         ...state,
         posts: action.payload,
+        loading: false,
       };
     case ADD_POST:
       return {
         ...state,
         posts: state.posts.concat(action.payload),
+        loading: false,
       };
     default:
       return {

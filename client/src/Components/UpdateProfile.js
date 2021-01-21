@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { updateUser } from '../Redux/Actions/Actions';
 import { Redirect } from 'react-router';
+import Spinner from './Spinner';
 
 class UpdateProfile extends React.Component {
   constructor(props) {
@@ -105,6 +106,7 @@ class UpdateProfile extends React.Component {
 
 const mapStateToProps = (state) => ({
   user: state.currentUser,
+  loading: state.loading,
 });
 
 export default connect(mapStateToProps)(UpdateProfile);
