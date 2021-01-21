@@ -40,7 +40,7 @@ class UpdateProfile extends React.Component {
         <div className='back'>
           {this.props.error && <h1>Invalid update</h1>}
           <h1>Update profile</h1>
-          <form onSubmit={this.onSubmitHandler}>
+          <form className='update-profile-form' onSubmit={this.onSubmitHandler}>
             <div className='signup-element'>
               <label for='name'>Name</label>
               <input

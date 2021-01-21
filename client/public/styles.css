@@ -197,6 +197,15 @@ body {
   border-radius: 15px;
 }
 
+#signup .update-profile-form {
+  padding: 30px 0;
+  background: #2f3542;
+  width: 450px;
+  height: 410px;
+  margin: auto;
+  border-radius: 15px;
+}
+
 #signup form label {
   float: left;
   font-size: 25px;
