@@ -47,9 +47,9 @@ class Post extends React.Component {
                 <i className='far fa-thumbs-down fa-3x'></i>
               </button>
               <h3>{this.props.post.dislikes.length}</h3>
-              <NavLink to={`/comments/1`}>
+              <Link to={'/comment/' + this.props.post._id}>
                 <i className='far fa-comment-dots fa-2x'></i>
-              </NavLink>
+              </Link>
               <h3>{this.props.post.comments.length}</h3>
               {this.props.post.creator === this.props.currentUser._id && (
                 <button onClick={this.onDeleteClick}>

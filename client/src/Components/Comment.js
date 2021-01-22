@@ -4,12 +4,8 @@ class Comment extends React.Component {
   render() {
     return (
       <div className='single-comment'>
-        <h4>Created by: Dhruv Adlakha</h4>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia tempora
-          numquam nihil reiciendis praesentium provident eligendi omnis nobis
-          voluptatem doloremque?
-        </p>
+        <h4>Created by: {this.props.comment.createdBy}</h4>
+        <p>{this.props.comment.content}</p>
       </div>
     );
   }

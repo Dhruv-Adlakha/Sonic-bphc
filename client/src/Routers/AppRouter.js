@@ -27,7 +27,7 @@ const AppRouter = () => {
         <Route path='/dashboard' component={Dashboard} />
         <Route path='/posts' component={Posts} exact={true} />
         <Route path='/addpost' component={AddPost} />
-        <Route path='/comments' component={Comments} />
+        <Route path='/comment/:id' component={Comments} />
       </Switch>
     </BrowserRouter>
   );

@@ -13,6 +13,7 @@ import {
   ERROR_RESOLVE,
   ADD_LIKE,
   ADD_DISLIKE,
+  ADD_COMMENT,
 } from '../Actions/ActionConstants';
 
 const initState = {
@@ -135,6 +136,16 @@ const reducer = (state = initState, action) => {
             post.dislikes.push(state.currentUser._id);
             return post;
           }
+        }),
+        error: false,
+        loading: false,
+      };
+    case ADD_COMMENT:
+      return {
+        ...state,
+        posts: state.posts.map((post) => {
+          if (post._id !== action.payload._id) return post;
+          else return action.payload;
         }),
         error: false,
         loading: false,

@@ -367,3 +367,43 @@ export const addDislike = (post) => {
     }
   };
 };
+
+export const addComment = (comm) => {
+  return async (dispatch) => {
+    dispatch({
+      type: LOADING,
+    });
+    try {
+      const token = localStorage.getItem('token');
+      const comment = {
+        content: comm.content,
+      };
+      console.log(comm);
+      const newcomm = await axios({
+        method: 'patch',
+        url: `/posts/comment/${comm._id}`,
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        data: comment,
+      });
+      console.log(comment);
+      dispatch({
+        type: 'ADD_COMMENT',
+        payload: newcomm.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: ERROR_OCCUR,
+      });
+      setTimeout(() => {
+        dispatch({
+          type: ERROR_RESOLVE,
+        });
+      }, 1000);
+      return error;
+    }
+  };
+};

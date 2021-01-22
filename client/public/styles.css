@@ -596,6 +596,11 @@ body {
   justify-content: flex-end;
 }
 
+.comments-area {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
 .comments .post-feedback i {
   color: #21bd52;
 }
@@ -622,6 +627,7 @@ body {
   border-radius: 5px;
   padding: 20px;
   margin: 15px 0;
+  font-weight: 300px;
 }
 
 .single-comment h4 {
@@ -632,4 +638,29 @@ body {
 .post-comments .status-bar {
   display: flex;
   justify-content: space-between;
+}
+
+/* add comment */
+.add-comment form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px 0;
+  height: 60px;
+}
+
+.add-comment input {
+  width: 80%;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 20px;
+  background-color: #a9acb1;
+}
+
+.add-comment button {
+  width: 20%;
+  font-size: 18px;
+  background-color: #2f3542;
+  font-weight: 600;
+  color: #0cdf4f;
 }
