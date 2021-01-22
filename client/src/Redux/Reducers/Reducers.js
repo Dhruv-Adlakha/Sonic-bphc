@@ -11,6 +11,8 @@ import {
   LOADING,
   ERROR_OCCUR,
   ERROR_RESOLVE,
+  ADD_LIKE,
+  ADD_DISLIKE,
 } from '../Actions/ActionConstants';
 
 const initState = {
@@ -62,6 +64,10 @@ const reducer = (state = initState, action) => {
       return {
         ...state,
         currentUser: action.payload,
+        users: state.users.map((user) => {
+          if (user._id !== action.payload._id) return user;
+          else return action.payload;
+        }),
         loading: false,
         error: false,
       };
@@ -82,6 +88,9 @@ const reducer = (state = initState, action) => {
     case DELETE_POST:
       return {
         ...state,
+        posts: state.posts.filter((post) => {
+          if (action.payload._id !== post._id) return post;
+        }),
         loading: false,
         error: false,
       };
@@ -100,6 +109,33 @@ const reducer = (state = initState, action) => {
     case ERROR_RESOLVE:
       return {
         ...state,
+        error: false,
+        loading: false,
+      };
+    case ADD_LIKE:
+      return {
+        ...state,
+        posts: state.posts.filter((post) => {
+          if (post._id !== action.payload._id) return post;
+          else {
+            post.likes.push(state.currentUser._id);
+            return post;
+          }
+        }),
+        error: false,
+        loading: false,
+      };
+
+    case ADD_DISLIKE:
+      return {
+        ...state,
+        posts: state.posts.filter((post) => {
+          if (post._id !== action.payload._id) return post;
+          else {
+            post.dislikes.push(state.currentUser._id);
+            return post;
+          }
+        }),
         error: false,
         loading: false,
       };

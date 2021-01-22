@@ -1,13 +1,9 @@
 import React from 'react';
 import Profile from './Profile';
 import { connect } from 'react-redux';
-import { getUsers } from '../Redux/Actions/Actions';
 import Spinner from './Spinner';
 
 class Profiles extends React.Component {
-  async componentDidMount(props) {
-    await this.props.dispatch(getUsers());
-  }
   render() {
     if (this.props.loading) {
       return <Spinner />;

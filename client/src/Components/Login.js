@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { LoginUser } from '../Redux/Actions/Actions';
+import { LoginUser, getUsers, getPosts } from '../Redux/Actions/Actions';
 import Spinner from './Spinner';
 import Error from './Error';
 
@@ -23,7 +23,14 @@ class Login extends React.Component {
   }
   async onSubmit(e) {
     e.preventDefault();
-    await this.props.dispatch(LoginUser(this.state));
+    try {
+      console.log(this.state);
+      await this.props.dispatch(LoginUser(this.state));
+      if (this.props.isAuthenticated) await this.props.dispatch(getUsers());
+      if (this.props.isAuthenticated) await this.props.dispatch(getPosts());
+    } catch (error) {
+      console.log(error);
+    }
   }
   render() {
     if (this.props.loading) {

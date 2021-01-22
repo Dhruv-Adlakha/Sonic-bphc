@@ -74,6 +74,8 @@ router.patch('/posts/like/:id', auth, async (req, res) => {
     if (post.likes.indexOf(req.user._id) === -1) {
       post.likes.push(req.user._id);
       await post.save();
+    } else {
+      return res.status(401).send();
     }
     res.send(post);
   } catch (error) {
@@ -91,6 +93,8 @@ router.patch('/posts/dislike/:id', auth, async (req, res) => {
     if (post.dislikes.indexOf(req.user._id) === -1) {
       post.dislikes.push(req.user._id);
       await post.save();
+    } else {
+      return res.status(401).send();
     }
     res.send(post);
   } catch (error) {

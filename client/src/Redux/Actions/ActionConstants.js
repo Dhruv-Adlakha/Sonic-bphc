@@ -12,3 +12,6 @@ export const ALERT_ERROR = 'ALERT_ERROR';
 export const REMOVE_ERROR = 'REMOVE_ERROR';
 export const ERROR_RESOLVE = 'ERROR_RESOLVE';
 export const ERROR_OCCUR = 'ERROR_OCCUR';
+export const ADD_LIKE = 'ADD_LIKE';
+export const ADD_DISLIKE = 'ADD_DISLIKE';
+export const ADD_COMMENT = 'ADD_COMMENT';

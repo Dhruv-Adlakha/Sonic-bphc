@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
-import { addUser } from '../Redux/Actions/Actions';
+import { addUser, getUsers, getPosts } from '../Redux/Actions/Actions';
 import { connect } from 'react-redux';
 import Spinner from './Spinner';
 import Error from './Error';
@@ -22,7 +22,8 @@ class Signup extends React.Component {
   async onSubmitHandler(e) {
     e.preventDefault();
     await this.props.dispatch(addUser(this.state));
-    console.log(this.props.isAuthenticated);
+    if (this.props.isAuthenticated) await this.props.dispatch(getUsers());
+    if (this.props.isAuthenticated) await this.props.dispatch(getPosts());
   }
   handleChange(e) {
     this.setState(() => {

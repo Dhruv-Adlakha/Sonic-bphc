@@ -8,18 +8,8 @@ import Spinner from './Spinner';
 class Posts extends React.Component {
   constructor(props) {
     super(props);
-    this.refreshPage = this.refreshPage.bind(this);
-    this.printer = this.printer.bind(this);
   }
-  async componentDidMount(props) {
-    await this.props.dispatch(getPosts());
-  }
-  refreshPage() {
-    this.props.dispatch(getPosts());
-  }
-  printer() {
-    console.log('dhruv ', this.props.loading);
-  }
+
   render() {
     if (this.props.loading) {
       return <Spinner />;
@@ -34,9 +24,7 @@ class Posts extends React.Component {
         <div className='posts'>
           {this.props &&
             this.props.posts.map((post, index) => {
-              return (
-                <Post key={index} post={post} refreshPage={this.refreshPage} />
-              );
+              return <Post key={index} post={post} />;
             })}
         </div>
       </div>

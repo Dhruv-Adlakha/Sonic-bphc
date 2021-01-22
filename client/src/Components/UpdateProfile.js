@@ -22,7 +22,6 @@ class UpdateProfile extends React.Component {
   }
   async onSubmitHandler(e) {
     e.preventDefault();
-    console.log(this.state);
     await this.props.dispatch(updateUser(this.state));
     this.setState(() => {
       return {

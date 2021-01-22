@@ -12,6 +12,9 @@ import {
   DELETE_POST,
   ERROR_RESOLVE,
   ERROR_OCCUR,
+  ADD_LIKE,
+  ADD_COMMENT,
+  ADD_DISLIKE,
 } from './ActionConstants';
 
 export const errorHandler = () => {};
@@ -37,6 +40,7 @@ export const getUsers = () => {
           type: ERROR_RESOLVE,
         });
       }, 1000);
+      return error;
     }
   };
 };
@@ -64,6 +68,7 @@ export const addUser = (user) => {
           type: ERROR_RESOLVE,
         });
       }, 1500);
+      return error;
     }
   };
 };
@@ -74,7 +79,6 @@ export const LoginUser = (user) => {
       type: LOADING,
     });
     try {
-      console.log(user);
       const res = await axios({
         method: 'post',
         url: '/users/login',
@@ -96,6 +100,7 @@ export const LoginUser = (user) => {
           type: ERROR_RESOLVE,
         });
       }, 1000);
+      return error;
     }
   };
 };
@@ -126,15 +131,13 @@ export const LogoutUser = (user) => {
           type: ERROR_RESOLVE,
         });
       }, 1000);
+      return error;
     }
   };
 };
 
 export const updateUser = (user) => {
   return async (dispatch) => {
-    dispatch({
-      type: LOADING,
-    });
     const token = localStorage.getItem('token');
     try {
       const updatedUser = await axios({
@@ -162,15 +165,13 @@ export const updateUser = (user) => {
           type: ERROR_RESOLVE,
         });
       }, 1000);
+      return error;
     }
   };
 };
 
 export const getPosts = () => {
   return async (dispatch) => {
-    dispatch({
-      type: LOADING,
-    });
     try {
       const token = localStorage.getItem('token');
       const posts = await axios({
@@ -197,15 +198,13 @@ export const getPosts = () => {
           type: ERROR_RESOLVE,
         });
       }, 1000);
+      return error;
     }
   };
 };
 
 export const addPost = (post) => {
   return async (dispatch) => {
-    dispatch({
-      type: LOADING,
-    });
     try {
       const token = localStorage.getItem('token');
       const newpost = await axios({
@@ -231,6 +230,7 @@ export const addPost = (post) => {
           type: ERROR_RESOLVE,
         });
       }, 1000);
+      return error;
     }
   };
 };
@@ -261,15 +261,13 @@ export const deleteUser = () => {
       dispatch({
         type: ERROR_RESOLVE,
       });
+      return error;
     }
   };
 };
 
 export const deletePost = (post) => {
   return async (dispatch) => {
-    dispatch({
-      type: LOADING,
-    });
     console.log('deleeeeeeeeeee');
     try {
       const token = localStorage.getItem('token');
@@ -284,11 +282,13 @@ export const deletePost = (post) => {
         },
         data: post,
       });
-      console.log(dpost);
+      console.log('dpost: ', dpost);
       dispatch({
         type: DELETE_POST,
+        payload: dpost.data,
       });
-      return post;
+      console.log('eee');
+      return dpost;
     } catch (error) {
       dispatch({
         type: ERROR_OCCUR,
@@ -298,6 +298,72 @@ export const deletePost = (post) => {
           type: ERROR_RESOLVE,
         });
       }, 1000);
+      return error;
+    }
+  };
+};
+
+export const addLike = (post) => {
+  return async (dispatch) => {
+    try {
+      const token = localStorage.getItem('token');
+      const dpost = await axios({
+        method: 'patch',
+        url: `/posts/like/${post._id}`,
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      dispatch({
+        type: ADD_LIKE,
+        payload: dpost.data,
+      });
+      return dpost;
+    } catch (error) {
+      dispatch({
+        type: ERROR_OCCUR,
+      });
+      setTimeout(() => {
+        dispatch({
+          type: ERROR_RESOLVE,
+        });
+      }, 1000);
+      return error;
+    }
+  };
+};
+
+export const addDislike = (post) => {
+  return async (dispatch) => {
+    try {
+      const token = localStorage.getItem('token');
+      const dpost = await axios({
+        method: 'patch',
+        url: `/posts/dislike/${post._id}`,
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      dispatch({
+        type: ADD_DISLIKE,
+        payload: dpost.data,
+      });
+      return dpost;
+    } catch (error) {
+      dispatch({
+        type: ERROR_OCCUR,
+      });
+      setTimeout(() => {
+        dispatch({
+          type: ERROR_RESOLVE,
+        });
+      }, 1000);
+      return error;
     }
   };
 };

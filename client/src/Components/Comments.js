@@ -1,10 +1,24 @@
 import React from 'react';
 import Comment from '../Components/Comment';
+import { addLike, addDislike } from '../Redux/Actions/Actions';
 
 class Comments extends React.Component {
   constructor(props) {
     super(props);
+    this.onLikeClick = this.onLikeClick.bind(this);
+    this.onDislikeClick = this.onDislikeClick.bind(this);
   }
+
+  async onLikeClick() {
+    await this.props.dispatch(addLike(this.props.post));
+    if (!this.props.error) this.props.refreshPage();
+  }
+
+  async onDislikeClick() {
+    await this.props.dispatch(addDislike(this.props.post));
+    if (!this.props.error) this.props.refreshPage();
+  }
+
   render() {
     return (
       <div className='comments-page'>
@@ -22,11 +36,11 @@ class Comments extends React.Component {
             deleniti iure. Dolorum ipsa reprehenderit dolores dicta sit.
           </p>
           <div className='post-feedback'>
-            <button>
+            <button onClick={this.onLikeClick}>
               <i className='far fa-thumbs-up fa-3x'></i>
             </button>
-            <h3>1</h3>
-            <button>
+            <h3>{1}</h3>
+            <button onClick={this.onDislikeClick}>
               <i className='far fa-thumbs-down fa-3x'></i>
             </button>
             <h3>0</h3>
